@@ -14,7 +14,6 @@ Allows users to add video games to lists and persist the information. The video 
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
 * **Category:** Gaming
 * **Mobile:** This app would be viable as both a mobile or desktop application. Albeit, in mobile form, a user can lookup/log information casually
 * **Story:** Allows users to search video game information and create lists from their phones
