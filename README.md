@@ -1,4 +1,4 @@
-# Milestone 1 - VGList (Unit 7)
+# Milestone 1 - Pet Shelter (Unit 7)
 
 ## Table of Contents
 
