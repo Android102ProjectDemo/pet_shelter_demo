@@ -10,16 +10,17 @@
 
 ### Description
 
-Allows users to add video games to lists and persist the information. The video game information comes from an outside API. Users are able to also input video game data from the app. There can be a metrics dashboard breaking down their gaming summary. Users can create their own profile and share their lists
+Allows users to search for pets using phone location to determine available pets. Users can create lists of pets and shelters to shortlist. Further information on pet care, pet items, health, etc. can be displayed on a feed
 
 ### App Evaluation
 
-* **Category:** Gaming
-* **Mobile:** This app would be viable as both a mobile or desktop application. Albeit, in mobile form, a user can lookup/log information casually
-* **Story:** Allows users to search video game information and create lists from their phones
-* **Market:** Any user that identifies as a gamer or would like to search video games
-* **Habit:** App will be used when needed to record information. With profiles enabled, user comments can be shared with other platform users to encourage communication
-* **Scope:** V1 would connect the app to the API and allow users to search games. V2 would allow users to create lists and display their curated collections. V3 would allow users to add extra information like comments and ratings. V4 would display a dashboard of stored data. V5 would allow users to create a profile and share lists
+  * **Description:**  Allows users to search for pets using phone location to determine available pets. Users can create lists of pets and shelters to shortlist. Further information on pet care, pet items, health, etc. can be displayed on a feed
+  * **Category:** Pets
+  * **Mobile:** This app would be viable in both a mobile or desktop application. Albeit, in mobile form, a user can lookup information casually
+  * **Story:** Helps users to categorize their searches or needs in the pet adoption process by creating lists and presenting search information in a friendly and accessible manner
+  * **Market:** Any user that is looking into adopting a pet or researching a shelter
+  * **Habit:** The app can be used as often as the adoption process is ongoing or afterwards to lookup shelter information
+  * **Scope:** V1 would allow users to create lists and their profiles. V2 would integrate shelter API to bring in pet and shelter information. V3 would display additional tips on managing the adoption process and other pet/shelter information. Potential to integrate related APIs from Amazon, Rover, and adoption websites. V4 can set-up adoption families with pet playdates and socialization
 
 ## Product Spec
 
