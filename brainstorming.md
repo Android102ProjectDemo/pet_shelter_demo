@@ -43,7 +43,7 @@
 ## Top 3 New App Ideas
 
 1. Video Game List
-2. Period Tracker
+2. Nutritional
 3. Pet Shelter
 
 ## New App Ideas - Evaluate and Categorize
