@@ -28,42 +28,37 @@ Allows users to search for pets using phone location to determine available pets
 
 **Required Features**
 
-1. [fill in your required user features here]
-2. ...
-3. ...
+1. Ability to search for animals based on a location property(zip code, (lat, long), or address) from API
+2. Store selected animals from API call to database
+3. Display stored pets from database
 
 **Optional Features**
 
-1. [fill in your optional user features here]
-2. ...
-3. ...
+1. Create a dark mode
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
-  - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
+- Animal Seach screen
+  - has a bottom navigation menu
+  - can use searchbar to initiate API search
+- Stored animal screen
+  - Displays any saved animals from search
+  - has a bottom navigation menu
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Animal search tab
+* Stored animal tab
 
 **Flow Navigation** (Screen to Screen)
 
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
-
+- Home screen defaults to Animal search tab with bottom navigation menu
+  - Can go to Saved animal feed
+- Stored animal screen with bottom navigation menu
+  - Can navigate back to Animal search screen
+  
 ## Wireframes
 
 [Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
@@ -71,10 +66,6 @@ Allows users to search for pets using phone location to determine available pets
 <br>
 
 <br>
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
 
 <br>
 
