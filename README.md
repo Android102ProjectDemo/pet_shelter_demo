@@ -61,7 +61,8 @@ Allows users to search for pets using phone location to determine available pets
   
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="wireframe.png" width=600>
+
 
 <br>
 
