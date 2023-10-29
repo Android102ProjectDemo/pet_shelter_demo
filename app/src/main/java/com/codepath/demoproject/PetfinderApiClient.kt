@@ -41,7 +41,7 @@ class PetfinderApiClient(private val listener: TokenListener) {
     }
 
     fun getAllAnimals(bearerToken: String) {
-        val request: Request = Request.Builder().url(ANIMALS_URL).get()
+        val request: Request = Request.Builder().url(ANIMALS_URL + "?location=46254").get()
             .addHeader(AUTH_HEADER, "$AUTH_BEARER $bearerToken").build()
 
         client.newCall(request).enqueue(object : Callback {
