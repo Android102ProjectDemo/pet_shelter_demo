@@ -78,12 +78,11 @@ Allows users to search for pets using phone location to determine available pets
 
 ## Issue cards
 
-- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] <img src="milestone_1.png" width=600>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+- <img src="milestone1.png" width=600>
 
 ## Issues worked on this sprint
 
-- List the issues you completed this sprint
+- Connect to Petfinder API
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 
 <br>
