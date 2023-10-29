@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import com.codepath.demoproject.databinding.ActivityMainBinding
 import com.codepath.demoproject.fragments.FavoritesFragment
 import com.codepath.demoproject.fragments.SearchFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), PetfinderApiClient.TokenListener {
     private var binding: ActivityMainBinding? = null
@@ -27,7 +28,10 @@ class MainActivity : AppCompatActivity(), PetfinderApiClient.TokenListener {
         val searchFragment: Fragment = SearchFragment()
         val favoritesFragment: Fragment = FavoritesFragment()
 
-        binding?.bottomNavigation?.setOnItemSelectedListener { item ->
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
             lateinit var fragment: Fragment
             when (item.itemId) {
                 R.id.action_search -> fragment = searchFragment
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity(), PetfinderApiClient.TokenListener {
             fragmentManager.beginTransaction().replace(R.id.rlContainer, fragment).commit()
             true
         }
+        bottomNavigationView.selectedItemId = R.id.action_search
+
     }
 
     override fun onTokenReceived(bearerToken: String) {
