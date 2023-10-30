@@ -91,7 +91,16 @@ Allows users to search for pets using phone location to determine available pets
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="project_board.png" width=600>
+
+## Issue cards
+
+- <img src="milestone3.png" width=600>
+
+## Issues worked on this sprint
+
+- Display available animals after calling API on location
+- <img src="milestone3.gif" width=600>
 
 ## Completed user stories
 
