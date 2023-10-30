@@ -7,8 +7,10 @@ import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import kotlinx.serialization.json.Json
 
 class PetfinderApiClient(private val listener: TokenListener) {
     private val client = OkHttpClient()
@@ -54,6 +56,35 @@ class PetfinderApiClient(private val listener: TokenListener) {
                 // Handle the response data here
                 if (responseData != null) {
                     Log.v("$LOG_TAG/getAllAnimals", responseData)
+                    val animalJsonObject = JSONObject(responseData)
+                    val animalsArray: JSONArray = animalJsonObject.getJSONArray("animals")
+                    Log.v("$LOG_TAG/getAllAnimals", animalsArray.toString())
+
+                    val animals = mutableListOf<Animal>()
+                    for (i in 0 until animalsArray.length()) {
+                        val animalObject = animalsArray.getJSONObject(i)
+                        val name = animalObject.getString("name")
+                        val species = animalObject.getString("species")
+                        val photosArray = animalObject.getJSONArray("photos")
+                        val photos = mutableListOf<Photo>()
+                        Log.v("$LOG_TAG/getAllAnimals", "$name $species")
+
+                        for (j in 0 until photosArray.length()) {
+                            val photoObject = photosArray.getJSONObject(j)
+                            val url = photoObject.getString("small")
+                            Log.v("$LOG_TAG/getAllAnimals", url)
+
+                            val photo = Photo(url)
+                            Log.v("$LOG_TAG/getAllAnimals", photo.toString())
+
+                            photos.add(photo)
+                        }
+
+                        // Create an Animal object and add it to the list
+                        val animal = Animal(name, species, photos)
+                        animals.add(animal)
+                    }
+
                 }
             }
         })

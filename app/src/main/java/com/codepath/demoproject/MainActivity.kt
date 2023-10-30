@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity(), PetfinderApiClient.TokenListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
-        //petfinderApiClient = PetfinderApiClient(this)
-        //petfinderApiClient.getBearerToken()
+        petfinderApiClient = PetfinderApiClient(this)
+        petfinderApiClient.getBearerToken()
 
         val fragmentManager: FragmentManager = supportFragmentManager
         val searchFragment: Fragment = SearchFragment()

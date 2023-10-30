@@ -20,6 +20,7 @@ import org.json.JSONObject
 class SearchFragment : Fragment() {
     private lateinit var searchProgressBar: ContentLoadingProgressBar
     private lateinit var emptySearchText: TextView
+    private lateinit var animalSearchRV: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class SearchFragment : Fragment() {
         item.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                //updateAdapter(query)
+               // updateAdapter(query)
                 return false
             }
 
@@ -56,9 +57,9 @@ class SearchFragment : Fragment() {
             view.findViewById<View>(R.id.animalSearchProgressBar) as ContentLoadingProgressBar
         searchProgressBar.hide()
         emptySearchText = view.findViewById<View>(R.id.emptySearch) as TextView
-        //exercisesSearchRV = view.findViewById<View>(R.id.exerciseSearchList) as RecyclerView
+        animalSearchRV = view.findViewById<View>(R.id.animaleSearchList) as RecyclerView
         val context = view.context
-        //exercisesSearchRV.layoutManager = LinearLayoutManager(context)
+        animalSearchRV.layoutManager = LinearLayoutManager(context)
         return view
     }
 
