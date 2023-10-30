@@ -104,13 +104,15 @@ Allows users to search for pets using phone location to determine available pets
 
 ## Completed user stories
 
-- List the completed user stories from this unit
-- List any pending user stories / any user stories you decided to cut
-from the original requirements
+- Connect to Petfinder API
+- Display available animals after calling API on location
+-
+-
+- Pending: Add dark mode [Optional]
 
 [Add video/gif of your current application that shows build progress]
 <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 ## App Demo Video
 
-- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+- No presentation required for demo project. ❌
