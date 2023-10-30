@@ -1,5 +1,7 @@
 package com.codepath.demoproject
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import okhttp3.Call
 import okhttp3.Callback
@@ -10,9 +12,12 @@ import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import kotlinx.serialization.json.Json
 
-class PetfinderApiClient(private val listener: TokenListener) {
+
+class PetfinderApiClient(
+    private val tokenListener: TokenListener,
+    private val animalListener: AnimalsListener
+) {
     private val client = OkHttpClient()
     fun getBearerToken() {
 
@@ -37,13 +42,15 @@ class PetfinderApiClient(private val listener: TokenListener) {
                 val bearerToken = responseJSONObject?.getString(ACCESS_TOKEN_KEY).toString()
                 // Edge case, no token received and token expires at 3600 minutes per API
                 Log.v("$LOG_TAG/token", bearerToken)
-                listener.onTokenReceived(bearerToken)
+                tokenListener.onTokenReceived(bearerToken)
             }
         })
     }
 
-    fun getAllAnimals(bearerToken: String) {
-        val request: Request = Request.Builder().url(ANIMALS_URL + "?location=46254").get()
+    fun getAllAnimals(bearerToken: String, zipCode: String) {
+
+        Log.v(LOG_TAG, "$ANIMALS_URL?location=$zipCode")
+        val request: Request = Request.Builder().url("$ANIMALS_URL?location=$zipCode").get()
             .addHeader(AUTH_HEADER, "$AUTH_BEARER $bearerToken").build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -53,43 +60,51 @@ class PetfinderApiClient(private val listener: TokenListener) {
 
             override fun onResponse(call: Call, response: Response) {
                 val responseData = response.body?.string()
+                val handler = Handler(Looper.getMainLooper())
+
                 // Handle the response data here
                 if (responseData != null) {
-                    Log.v("$LOG_TAG/getAllAnimals", responseData)
-                    val animalJsonObject = JSONObject(responseData)
-                    val animalsArray: JSONArray = animalJsonObject.getJSONArray("animals")
-                    Log.v("$LOG_TAG/getAllAnimals", animalsArray.toString())
+                    handler.post {
 
-                    val animals = mutableListOf<Animal>()
-                    for (i in 0 until animalsArray.length()) {
-                        val animalObject = animalsArray.getJSONObject(i)
-                        val name = animalObject.getString("name")
-                        val species = animalObject.getString("species")
-                        val photosArray = animalObject.getJSONArray("photos")
-                        val photos = mutableListOf<Photo>()
-                        Log.v("$LOG_TAG/getAllAnimals", "$name $species")
+                        Log.v("$LOG_TAG/getAllAnimals", responseData)
+                        val animalJsonObject = JSONObject(responseData)
+                        val animalsArray: JSONArray = animalJsonObject.getJSONArray("animals")
+                        //Log.v("$LOG_TAG/getAllAnimals", animalsArray.toString())
 
-                        for (j in 0 until photosArray.length()) {
-                            val photoObject = photosArray.getJSONObject(j)
-                            val url = photoObject.getString("small")
-                            Log.v("$LOG_TAG/getAllAnimals", url)
+                        val animals = mutableListOf<Animal>()
+                        for (i in 0 until animalsArray.length()) {
+                            val animalObject = animalsArray.getJSONObject(i)
+                            val name = animalObject.getString("name")
+                            val species = animalObject.getString("species")
+                            val photosArray = animalObject.getJSONArray("photos")
+                            val photos = mutableListOf<Photo>()
+                            //Log.v("$LOG_TAG/getAllAnimals", "$name $species")
 
-                            val photo = Photo(url)
-                            Log.v("$LOG_TAG/getAllAnimals", photo.toString())
-
-                            photos.add(photo)
+                            for (j in 0 until photosArray.length()) {
+                                val photoObject = photosArray.getJSONObject(j)
+                                val url = photoObject.getString("small")
+                                //Log.v("$LOG_TAG/getAllAnimals", url)
+                                val photo = Photo(url)
+                                //Log.v("$LOG_TAG/getAllAnimals", photo.toString())
+                                photos.add(photo)
+                            }
+                            val animal = Animal(name, species, photos)
+                            animals.add(animal)
                         }
 
-                        // Create an Animal object and add it to the list
-                        val animal = Animal(name, species, photos)
-                        animals.add(animal)
-                    }
 
+                        animalListener.onAnimalsReceived(animals)
+                    }
                 }
             }
         })
 
     }
+
+    interface AnimalsListener {
+        fun onAnimalsReceived(animals: List<Animal>)
+    }
+
 
     interface TokenListener {
         fun onTokenReceived(bearerToken: String)

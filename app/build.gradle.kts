@@ -63,6 +63,7 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation ("com.github.bumptech.glide:glide:4.13.2")
+    implementation ("androidx.fragment:fragment-ktx:1.6.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.13.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
