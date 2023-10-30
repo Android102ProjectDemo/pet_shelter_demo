@@ -91,7 +91,7 @@ Allows users to search for pets using phone location to determine available pets
 
 ## GitHub Project board
 
-<img src="project_board.png" width=600>
+<img src="project_board_3.png" width=600>
 
 ## Issue cards
 
