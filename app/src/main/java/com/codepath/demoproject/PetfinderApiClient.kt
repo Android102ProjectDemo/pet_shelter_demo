@@ -55,21 +55,18 @@ class PetfinderApiClient(
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // Handle failure here
             }
 
             override fun onResponse(call: Call, response: Response) {
                 val responseData = response.body?.string()
                 val handler = Handler(Looper.getMainLooper())
 
-                // Handle the response data here
                 if (responseData != null) {
                     handler.post {
 
                         Log.v("$LOG_TAG/getAllAnimals", responseData)
                         val animalJsonObject = JSONObject(responseData)
                         val animalsArray: JSONArray = animalJsonObject.getJSONArray("animals")
-                        //Log.v("$LOG_TAG/getAllAnimals", animalsArray.toString())
 
                         val animals = mutableListOf<Animal>()
                         for (i in 0 until animalsArray.length()) {
@@ -78,17 +75,15 @@ class PetfinderApiClient(
                             val species = animalObject.getString("species")
                             val photosArray = animalObject.getJSONArray("photos")
                             val photos = mutableListOf<Photo>()
-                            //Log.v("$LOG_TAG/getAllAnimals", "$name $species")
 
                             for (j in 0 until photosArray.length()) {
                                 val photoObject = photosArray.getJSONObject(j)
                                 val url = photoObject.getString("small")
-                                //Log.v("$LOG_TAG/getAllAnimals", url)
                                 val photo = Photo(url)
-                                //Log.v("$LOG_TAG/getAllAnimals", photo.toString())
                                 photos.add(photo)
                             }
                             val animal = Animal(name, species, photos)
+
                             animals.add(animal)
                         }
 
@@ -102,7 +97,7 @@ class PetfinderApiClient(
     }
 
     interface AnimalsListener {
-        fun onAnimalsReceived(animals: List<Animal>)
+        fun onAnimalsReceived(animals: MutableList<Animal>)
     }
 
 

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface AnimalDao {
     @Query("SELECT * FROM animal_table")
-    fun getAll(): Flow<List<Animal>>
+    fun getAll(): Flow<List<DisplayAnimal>>
 
     @Insert
     fun insert(favorite: AnimalEntity)

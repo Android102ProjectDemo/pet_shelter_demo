@@ -42,12 +42,12 @@ class SearchFragment : Fragment(), PetfinderApiClient.TokenListener,
         this.bearerToken = bearerToken
     }
 
-    override fun onAnimalsReceived(animals: List<Animal>) {
+    override fun onAnimalsReceived(animals: MutableList<Animal>) {
         val animalsToDisplay = animals.toMutableList()
         emptySearchText.visibility = INVISIBLE
         searchProgressBar.hide()
         animalSearchRV.adapter =
-            view?.let { AnimalSearchAdapter(it.context, animalsToDisplay) }
+            view?.let { AnimalSearchAdapter(requireContext(), animalsToDisplay, this) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -81,15 +81,22 @@ class SearchFragment : Fragment(), PetfinderApiClient.TokenListener,
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
+
         activity?.title = "Search animals"
         searchProgressBar =
             view.findViewById<View>(R.id.animalSearchProgressBar) as ContentLoadingProgressBar
         searchProgressBar.hide()
         emptySearchText = view.findViewById<View>(R.id.emptySearch) as TextView
         animalSearchRV = view.findViewById<View>(R.id.animalSearchList) as RecyclerView
+
         val context = view.context
         animalSearchRV.layoutManager = LinearLayoutManager(context)
-        animalSearchRV.addItemDecoration(DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL))
+        animalSearchRV.addItemDecoration(
+            DividerItemDecoration(
+                requireActivity(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
         return view
     }
 
