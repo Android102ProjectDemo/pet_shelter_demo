@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.demoproject.Animal
@@ -57,6 +58,7 @@ class SearchFragment : Fragment(), PetfinderApiClient.TokenListener,
     override fun onPrepareOptionsMenu(menu: Menu) {
         val item =
             menu.findItem(R.id.action_animal_search).actionView as androidx.appcompat.widget.SearchView
+        item.queryHint = "Enter a zip code..."
         item.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -79,7 +81,7 @@ class SearchFragment : Fragment(), PetfinderApiClient.TokenListener,
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
-        //activity?.title = getString(R.string.action_bar_search)
+        activity?.title = "Search animals"
         searchProgressBar =
             view.findViewById<View>(R.id.animalSearchProgressBar) as ContentLoadingProgressBar
         searchProgressBar.hide()
@@ -87,11 +89,12 @@ class SearchFragment : Fragment(), PetfinderApiClient.TokenListener,
         animalSearchRV = view.findViewById<View>(R.id.animalSearchList) as RecyclerView
         val context = view.context
         animalSearchRV.layoutManager = LinearLayoutManager(context)
+        animalSearchRV.addItemDecoration(DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL))
         return view
     }
 
     companion object {
-        private const val LOG_TAG = "SearchFragment/"
+        private const val LOG_TAG = "SearchFragment"
 
         fun newInstance(): SearchFragment {
             return SearchFragment()
