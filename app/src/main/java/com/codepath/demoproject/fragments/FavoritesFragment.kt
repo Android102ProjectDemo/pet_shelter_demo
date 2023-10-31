@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.demoproject.AnimalApplication
@@ -30,10 +31,18 @@ class FavoritesFragment : Fragment() {
         val view = inflater.inflate(
             R.layout.fragment_favorites, container, false
         )
+        activity?.title = "Favorites"
+
         favRecyclerView = view.findViewById<View>(R.id.favAnimalSearchList) as RecyclerView
 
         val context = view.context
         favRecyclerView.layoutManager = LinearLayoutManager(context)
+        favRecyclerView.addItemDecoration(
+            DividerItemDecoration(
+                requireActivity(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
         favRecyclerView.adapter = view?.let { FavoritesAdapter(requireContext(), favorites) }
 
 
