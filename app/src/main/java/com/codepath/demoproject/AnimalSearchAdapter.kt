@@ -66,7 +66,13 @@ class AnimalSearchAdapter(
                         )
                     )
                 }
-                Toast.makeText(context, "Added $name to favorites.", Toast.LENGTH_SHORT).show()
+                if (name != null) {
+                    Toast.makeText(
+                        context,
+                        "Added ${name.trim()} to favorites.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 

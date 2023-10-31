@@ -10,6 +10,7 @@ data class AnimalsReponse(
     @SerialName("animals")
     val animals: List<Animal>?
 )
+
 @Keep
 @Serializable
 data class Animal(
