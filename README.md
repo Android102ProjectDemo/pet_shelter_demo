@@ -106,8 +106,8 @@ Allows users to search for pets using phone location to determine available pets
 
 - Connect to Petfinder API
 - Display available animals after calling API on location
--
--
+- Store favorited pets
+- Update app UI
 - Pending: Add dark mode [Optional]
 
 [Add video/gif of your current application that shows build progress]
